@@ -44,4 +44,4 @@ for i, section in enumerate(sections):
     df_section_title.to_csv('./crawling_data/data_{}.csv'.format(category[i]), index=False)
     df_titles = pd.concat([df_titles, df_section_title], axis=0, ignore_index=True)
 
-df_titles.to_csv('./naver_news_economy_data.csv')
+df_titles.to_csv('./naver_news_economy_data.csv', index=False)
