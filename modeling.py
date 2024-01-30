@@ -4,13 +4,13 @@ from tensorflow.keras.models import *
 from tensorflow.keras.layers import *
 
 X_train, X_test, Y_train, Y_test = np.load(
-    './news_data_max_18_wordsize_7524.npy', allow_pickle=True
+    './news_data_max_23_wordsize_15214.npy', allow_pickle=True
 )
 print(X_train.shape, Y_train.shape)
 print(X_test.shape, Y_test.shape)
 
 model = Sequential()
-model.add(Embedding(7524, 300, input_length=18))
+model.add(Embedding(15214, 300, input_length=23))
 model.add(Conv1D(32, kernel_size=5, padding='same', activation='relu'))
 model.add(MaxPooling1D(pool_size=1))
 model.add(LSTM(128, activation='tanh', return_sequences=True))
