@@ -14,14 +14,14 @@ import pickle
 
 from tensorflow.keras.models import load_model
 
-df = pd.read_csv("../naver_economy/naver_test_headline_news_20240130.csv")
+df = pd.read_csv("./crawling_data/naver_test_headline_news_20240130.csv")
 print(df.head())
 print(df.info())
 
 X = df["titles"]
 Y = df["category"]
 
-with open("../naver_economy/label_encoder.pickle", "rb") as file:
+with open("./crawling_data/label_encoder.pickle", "rb") as file:
     label_encoder = pickle.load(file)
 
 label = label_encoder.classes_
@@ -44,20 +44,20 @@ for i in range(len(X)):
 
     X[i] = " ".join(words)
 
-with open("../naver_economy/news_token.pickle", "rb") as file:
+with open("./crawling_data/news_token.pickle", "rb") as file:
     token = pickle.load(file)
 
 tokened_x = token.texts_to_sequences(X)
 
 for i in range(len(tokened_x)):
-    if len(tokened_x[i]) > 20:
-        tokened_x[i] = tokened_x[i][:20]
+    if len(tokened_x[i]) > 17:
+        tokened_x[i] = tokened_x[i][:17]
 
 print(tokened_x)
 
-x_pad = pad_sequences(tokened_x, 20)
+x_pad = pad_sequences(tokened_x, 17)
 
-model = load_model("../naver_economy/economy_category_classification_model_0.5552995204925537.h5")
+model = load_model("./crawling_data/economy_category_classification_model_0.5325960516929626.h5")
 
 preds = model.predict(x_pad)
 

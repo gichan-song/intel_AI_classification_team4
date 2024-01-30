@@ -25,6 +25,6 @@ for i, section in enumerate(sections):
 print(df_titles.head())
 df_titles.info()
 print(df_titles['category'].value_counts())
-df_titles.to_csv('../naver_economy/naver_test_headline_news_{}.csv'.format(
+df_titles.to_csv('./crawling_data/naver_test_headline_news_{}.csv'.format(
     datetime.datetime.now().strftime('%Y%m%d')
 ), index=False)
