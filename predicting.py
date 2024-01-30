@@ -14,7 +14,7 @@ import pickle
 
 from tensorflow.keras.models import load_model
 
-df = pd.read_csv("./crawling_data/naver_test_headline_news_20240130.csv")
+df = pd.read_csv("./crawling_data/korea_economy_headline_news_20240130.csv")
 print(df.head())
 print(df.info())
 
