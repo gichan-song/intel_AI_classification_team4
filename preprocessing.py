@@ -23,10 +23,7 @@ label = label_encoder.classes_
 with open("./crawling_data/label_encoder.pickle", "wb") as file:
     pickle.dump(label_encoder, file)
 
-# with open('./models/label_encoder.pickle', 'wb') as f:
-#     pickle.dump(label_encoder, f)
 onehot_y = to_categorical(labeled_y)
-
 
 okt = Okt()
 for i in range(len(X)):
