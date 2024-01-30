@@ -41,7 +41,12 @@ for i, section in enumerate(sections):
             print('re compile miss')
     df_section_title = pd.DataFrame(titles, columns=['titles'])
     df_section_title['category'] = category[i]
-    df_section_title.to_csv('./crawling_data/data_{}.csv'.format(category[i]), index=False)
+    df_section_title.to_csv('../naver_economy/data_{}.csv'.format(category[i]), index=False)
     df_titles = pd.concat([df_titles, df_section_title], axis=0, ignore_index=True)
 
-df_titles.to_csv('./naver_news_economy_data.csv', index=False)
+df_titles.to_csv('../naver_economy/naver_news_economy_data.csv', index=False)
+print(df_titles.head())
+print(df_titles["category"].value_counts())
+print(df_titles.info())
+
+driver.close()
