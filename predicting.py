@@ -50,14 +50,14 @@ with open("./crawling_data/news_token.pickle", "rb") as file:
 tokened_x = token.texts_to_sequences(X)
 
 for i in range(len(tokened_x)):
-    if len(tokened_x[i]) > 17:
-        tokened_x[i] = tokened_x[i][:17]
+    if len(tokened_x[i]) > 23:
+        tokened_x[i] = tokened_x[i][:23]
 
 print(tokened_x)
 
-x_pad = pad_sequences(tokened_x, 17)
+x_pad = pad_sequences(tokened_x, 23)
 
-model = load_model("./crawling_data/economy_category_classification_model_0.5325960516929626.h5")
+model = load_model("./crawling_data/economy_category_classification_model_0.5509442687034607.h5")
 
 preds = model.predict(x_pad)
 

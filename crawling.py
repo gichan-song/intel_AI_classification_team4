@@ -26,7 +26,7 @@ for i, section in enumerate(sections):
     titles = []
     driver.get(url)
     time.sleep(0.5)
-    for n in range(30):
+    for n in range(100):
         try:
             driver.find_element('xpath', '//*[@id="newsct"]/div[2]/div/div[2]/a').click()
             time.sleep(0.2)
