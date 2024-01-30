@@ -50,12 +50,12 @@ with open("../naver_economy/news_token.pickle", "rb") as file:
 tokened_x = token.texts_to_sequences(X)
 
 for i in range(len(tokened_x)):
-    if len(tokened_x[i]) > 23:
-        tokened_x[i] = tokened_x[i][:23]
+    if len(tokened_x[i]) > 20:
+        tokened_x[i] = tokened_x[i][:20]
 
 print(tokened_x)
 
-x_pad = pad_sequences(tokened_x, 27)
+x_pad = pad_sequences(tokened_x, 20)
 
 model = load_model("../naver_economy/economy_category_classification_model_0.5552995204925537.h5")
 
