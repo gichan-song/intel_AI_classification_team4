@@ -9,10 +9,9 @@ from sklearn.preprocessing import LabelEncoder
 from tensorflow.keras.utils import to_categorical
 import pickle
 
-df = pd.read_csv('naver_news_economy_data.csv')
+df = pd.read_csv('./crawling_data/naver_news_economy_data.csv')
 print(df.head())
 df.info()
-
 
 X = df['titles']
 Y = df['category']
@@ -20,10 +19,11 @@ Y = df['category']
 label_encoder = LabelEncoder()
 labeled_y = label_encoder.fit_transform(Y)
 label = label_encoder.classes_
-# with open('./models/label_encoder.pickle', 'wb') as f:
-#     pickle.dump(label_encoder, f)
-onehot_y = to_categorical(labeled_y)
 
+with open("./crawling_data/label_encoder.pickle", "wb") as file:
+    pickle.dump(label_encoder, file)
+
+onehot_y = to_categorical(labeled_y)
 
 okt = Okt()
 for i in range(len(X)):
@@ -45,7 +45,7 @@ wordsize = len(token.word_index) + 1
 # print(tokened_x)
 print(wordsize)
 
-with open('./models/news_token.pickle', 'wb') as f:
+with open('./crawling_data/news_token.pickle', 'wb') as f:
     pickle.dump(token, f)
 
 max = 0
@@ -64,4 +64,4 @@ print(X_test.shape, Y_test.shape)
 
 xy = X_train, X_test, Y_train, Y_test
 xy = np.array(xy, dtype=object)
-np.save('./news_data_max_{}_wordsize_{}'.format(max, wordsize), xy)
+np.save('./crawling_data/news_data_max_{}_wordsize_{}'.format(max, wordsize), xy)

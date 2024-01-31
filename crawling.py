@@ -26,7 +26,7 @@ for i, section in enumerate(sections):
     titles = []
     driver.get(url)
     time.sleep(0.5)
-    for n in range(30):
+    for n in range(100):
         try:
             driver.find_element('xpath', '//*[@id="newsct"]/div[2]/div/div[2]/a').click()
             time.sleep(0.2)
@@ -44,4 +44,9 @@ for i, section in enumerate(sections):
     df_section_title.to_csv('./crawling_data/data_{}.csv'.format(category[i]), index=False)
     df_titles = pd.concat([df_titles, df_section_title], axis=0, ignore_index=True)
 
-df_titles.to_csv('./naver_news_economy_data.csv', index=False)
+df_titles.to_csv('./crawling_data/naver_news_economy_data.csv', index=False)
+print(df_titles.head())
+print(df_titles["category"].value_counts())
+print(df_titles.info())
+
+driver.close()
